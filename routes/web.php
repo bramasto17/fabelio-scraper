@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('ping', function() {
+    return 'pong';
 });
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'FabelioController@showSubmit');
+Route::post('/', 'FabelioController@submit');
+Route::get('/products', 'FabelioController@showProducts');
+Route::get('/products/{id}', 'FabelioController@showProductById');
