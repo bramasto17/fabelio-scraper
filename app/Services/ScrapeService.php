@@ -27,7 +27,7 @@ class ScrapeService extends \App\Services\BaseService
             $product_gallery = [];
             $productGallery = $this->call('GET','https://fabelio.com/swatches/ajax/media/?product_id='.$productId);
             foreach ($productGallery['gallery'] as $key => $gallery) {
-                $product_gallery[] = $gallery['medium'];
+                $product_gallery[]['image_url'] = $gallery['medium'];
             }
 
             return [
@@ -36,6 +36,7 @@ class ScrapeService extends \App\Services\BaseService
                 'description' => $description,
                 'regular_price' => $regular_price,
                 'final_price' => $final_price,
+                'product_url' => $url,
                 'product_image_url' => $product_image_url,
                 'product_gallery' => $product_gallery
             ];
