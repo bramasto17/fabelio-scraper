@@ -31,7 +31,7 @@ class ScrapeService extends \App\Services\BaseService
             }
 
             return [
-                'product_id' => $productId,
+                'fabelio_product_id' => $productId,
                 'name' => $name,
                 'description' => $description,
                 'regular_price' => $regular_price,

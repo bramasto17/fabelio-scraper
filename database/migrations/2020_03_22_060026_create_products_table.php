@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->longText('description');
+            $table->integer('fabelio_product_id')->unique();
             $table->string('product_url')->unique();
             $table->string('product_image_url')->unique();
             $table->double('final_price', 20, 2)->nullable();
