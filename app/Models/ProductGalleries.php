@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends Model
+class ProductGalleries extends Model
 {
-    protected $table   = 'products';
+    protected $table   = 'product_galleries';
     protected $guarded = array('id');
 
     public function priceHistory()
