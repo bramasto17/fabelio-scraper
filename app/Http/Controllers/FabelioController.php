@@ -34,7 +34,7 @@ class FabelioController extends Controller
 
     public function submit(Request $request)
     {
-        $attributes = $request->all();
+        $attributes = array_except($request->all(),['_token']);
         $result = $this->productsService->submit($attributes);
 
         // \Session::flash('flash_message', 'Department successfully Created!');
