@@ -11,8 +11,24 @@ use Carbon\Carbon;
 class ProductsService extends \App\Services\BaseService
 {
     private $scrapeService;
+    private $include = ['priceHistory','gallery'];
+
     public function __construct(ScrapeService $scrapeService) {
         $this->scrapeService = $scrapeService;
+    }
+
+    public function getAll($attributes = [])
+    {
+        $results = $this->queryBuilder(Products::class, $attributes, [])->get()->toArray();
+
+        return $results;
+    }
+
+    public function getById($id)
+    {
+        $result = Products::with($this->include)->where('id', $id)->firstOrFail()->toArray();
+
+        return $result;
     }
 
     public function submit(array $data)
