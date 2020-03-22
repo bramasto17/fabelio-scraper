@@ -99,4 +99,13 @@ class ProductsService extends \App\Services\BaseService
             return $result;
         });
     }
+
+    protected function updateAllProducts()
+    {
+        $products = Products::all();
+        foreach ($products as $product) {
+            $url = $product['product_url'];
+            $this->submit(['url' => $url]);
+        }
+    }
 }
