@@ -20,15 +20,20 @@ class FabelioController extends Controller
         return view('fabelio.submit');
     }
 
-    public function showProducts()
+    public function showProducts(Request $request)
     {
-    	dd('showProducts');
+        $attributes = $request->all();
+        $results = $this->productsService->getAll($attributes);
+
+    	dd($results);
         return view('fabelio.products.submit');
     }
 
     public function showProductById($id)
     {
-    	dd('showProduct'.$id);
+        $result = $this->productsService->getById($id);
+    	dd($result);
+        
         return view('fabelio.products.submit');
     }
 
@@ -37,9 +42,7 @@ class FabelioController extends Controller
         $attributes = array_except($request->all(),['_token']);
         $result = $this->productsService->submit($attributes);
 
-        // \Session::flash('flash_message', 'Department successfully Created!');
-    	dd('create');
-        return redirect('products');
+        return redirect('/');
     }
 
     // public function getAll(Request $request)
