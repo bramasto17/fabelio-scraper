@@ -8,7 +8,6 @@ class PriceHistories extends Model
 {
     protected $table   = 'product_price_histories';
     protected $guarded = array('id');
-    protected $appends = array('status_str');
 
     public function priceHistory()
     {
