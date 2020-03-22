@@ -37,9 +37,11 @@ class ProductsService extends \App\Services\BaseService
         // dd($data);
 
         return $this->atomic(function() use ($data) {
-            $product = Products::where('fabelio_product_id',$data['fabelio_product_id'])->first()->toArray();
+            $product = Products::where('fabelio_product_id',$data['fabelio_product_id'])->first();
             // If product already exists
             if(@$product){
+                $product = $product->toArray();
+                
                 // Get hour difference between now and product last update
                 $hourdiff = (strtotime(Carbon::now()) - strtotime($product['updated_at']))/3600;
 
