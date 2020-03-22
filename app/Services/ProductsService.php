@@ -6,6 +6,7 @@ use App\Models\Products;
 use App\Models\ProductGalleries;
 use App\Models\PriceHistories;
 use App\Services\ScrapeService;
+use Carbon\Carbon;
 
 class ProductsService extends \App\Services\BaseService
 {
@@ -20,15 +21,30 @@ class ProductsService extends \App\Services\BaseService
         // dd($data);
 
         return $this->atomic(function() use ($data) {
-            // Create Product Data
-            $product = $this->createProduct(array_except($data,['product_gallery']));
-            // dd($product);
+            $product = Products::where('fabelio_product_id',$data['fabelio_product_id'])->first()->toArray();
+            // If product already exists
+            if(@$product){
+                // Get hour difference between now and product last update
+                $hourdiff = (strtotime(Carbon::now()) - strtotime($product['updated_at']))/3600;
 
-            // Create Product Gallery
-            $productGallery = $this->createProductGallery($data['product_gallery'], $product['id']);
+                // Only update data if it's at least one hour from the last time update
+                if($hourdiff >= 1){
+                    $product = $this->updateProduct(array_except($data,['product_gallery']));
 
-            // Create Price History
-            $priceHistory = $this->createPriceHistory($data, $product['id']);
+                    $priceHistory = $this->createPriceHistory($data, $product['id']);    
+                }
+            }
+            // If product does not exist yet
+            else{
+                // Create Product Data
+                $product = $this->createProduct(array_except($data,['product_gallery']));
+
+                // Create Product Gallery
+                $productGallery = $this->createProductGallery($data['product_gallery'], $product['id']);
+
+                // Create Price History
+                $priceHistory = $this->createPriceHistory($data, $product['id']);
+            }
 
             return $product;
         });
@@ -39,6 +55,17 @@ class ProductsService extends \App\Services\BaseService
     {
         return $this->atomic(function() use ($data) {
             $result = Products::create($data)->toArray();
+
+            return $result;
+        });
+    }
+
+    protected function updateProduct(array $data)
+    {
+        return $this->atomic(function() use ($data) {
+            Products::where('fabelio_product_id',$data['fabelio_product_id'])->update($data);
+
+            $result = Products::where('fabelio_product_id',$data['fabelio_product_id'])->first()->toArray();
 
             return $result;
         });
