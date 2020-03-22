@@ -44,5 +44,47 @@ class BaseService
         return $baseQuery;
     }
 
+    protected function call($method, $url, $data = [], $token = null, $api = true)
+    {
+        $headers = [
+            'Authorization' => $token,
+            'Accept'        => 'application/json'
+        ];
+
+        $client = new \GuzzleHttp\Client();
+
+        if ($method == 'GET') {
+            $parameters = [
+                'headers' => $headers
+            ];
+        } else {
+            $parameters = [
+                'headers'     => $headers,
+                'form_params' => $data
+            ];
+        }
+
+        try {
+            $response = $client->request($method, $url, $parameters);
+
+            if($api){
+                return json_decode($response->getBody(), true);
+            }
+            else{
+                return $response->getBody()->getContents();
+            }
+        } catch (\Exception $e) {
+            $error = [
+                'origin' => $url,
+                'response' => json_decode($e->getResponse()->getBody()->getContents(), true)
+            ];
+
+            if ($e->getResponse()->getStatusCode() == 404) {
+                return null;
+            } else return abort($error['response']['status'], $url . ' : ' . $error['response']['message']);
+        }
+    }
+
+
 
 }
