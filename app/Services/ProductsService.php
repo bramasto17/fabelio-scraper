@@ -100,9 +100,9 @@ class ProductsService extends \App\Services\BaseService
         });
     }
 
-    protected function updateAllProducts()
+    public function updateAllProducts()
     {
-        $products = Products::all();
+        $products = Products::all()->toArray();
         foreach ($products as $product) {
             $url = $product['product_url'];
             $this->submit(['url' => $url]);
