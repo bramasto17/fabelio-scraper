@@ -16,4 +16,9 @@ class Products extends Model
     {
         return $this->hasMany('\App\Models\PriceHistories', 'product_id', 'id');
     }
+
+    public function gallery()
+    {
+        return $this->hasMany('\App\Models\ProductGalleries', 'product_id', 'id');
+    }
 }
