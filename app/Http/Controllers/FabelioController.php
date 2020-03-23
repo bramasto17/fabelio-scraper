@@ -20,6 +20,19 @@ class FabelioController extends Controller
         return view('fabelio.submit');
     }
 
+    public function submit(Request $request)
+    {
+        $attributes = array_except($request->all(),['_token']);
+        $result = $this->productsService->submit($attributes);
+
+        if(!@$result){
+            \Session::flash('flash_message', 'URL Invalid!');
+            return redirect('/');
+        }
+
+        return redirect('/products/'.$result['id']);
+    }
+
     public function showProducts(Request $request)
     {
         $attributes = $request->all();
@@ -42,19 +55,6 @@ class FabelioController extends Controller
         $result = $this->productsService->getById($id);
         
         return $result;
-    }
-
-    public function submit(Request $request)
-    {
-        $attributes = array_except($request->all(),['_token']);
-        $result = $this->productsService->submit($attributes);
-
-        if(!@$result){
-            \Session::flash('flash_message', 'URL Invalid!');
-            return redirect('/');
-        }
-
-        return redirect('/');
     }
 
     // public function getAll(Request $request)
