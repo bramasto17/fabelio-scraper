@@ -1,4 +1,3 @@
-<!-- Credits to : https://codepen.io/himalayasingh/pen/dqjLgO -->
 <!DOCTYPE html>
 <html>
 
