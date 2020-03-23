@@ -37,6 +37,13 @@ class FabelioController extends Controller
         return view('fabelio.detail', compact('result'));
     }
 
+    public function getProductById($id)
+    {
+        $result = $this->productsService->getById($id);
+        
+        return $result;
+    }
+
     public function submit(Request $request)
     {
         $attributes = array_except($request->all(),['_token']);
