@@ -19,6 +19,6 @@ class Products extends Model
 
     public function gallery()
     {
-        return $this->hasMany('\App\Models\ProductGalleries', 'product_id', 'id');
+        return $this->hasMany('\App\Models\ProductGalleries', 'product_id', 'id')->take(4);
     }
 }
