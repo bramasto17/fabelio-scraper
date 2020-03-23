@@ -16,7 +16,7 @@
             </section>
             <section id="list">
                 @foreach($results as $result)
-                <a href="{{$result['id']}}">
+                <a href="products/{{$result['id']}}">
                     <div class="item">
                         <div class="product">
                             <div class="image">
