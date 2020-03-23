@@ -45,8 +45,8 @@ class ProductsService extends \App\Services\BaseService
                     // Get hour difference between now and product last update
                     $hourdiff = (strtotime(Carbon::now()) - strtotime($product['updated_at']))/3600;
 
-                    // Only update data if it's at least one hour from the last time update
-                    if($hourdiff >= 1){
+                    // Only update data if it's at least one hour from the last time update (give an offset around 0.1)
+                    if($hourdiff >= 0.9){
                         $product = $this->updateProduct(array_except($data,['product_gallery']));
 
                         $priceHistory = $this->createPriceHistory($data, $product['id']);    
