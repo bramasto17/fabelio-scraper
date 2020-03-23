@@ -18,8 +18,7 @@ class CreateProductGalleriesTable extends Migration
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->string('image_url');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->softDeletes();
         });
     }

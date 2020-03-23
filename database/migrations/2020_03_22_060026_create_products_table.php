@@ -22,8 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('product_image_url')->unique();
             $table->double('final_price', 20, 2)->nullable();
             $table->double('regular_price', 20, 2)->nullable();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->softDeletes();
         });
     }
