@@ -44,7 +44,7 @@
           </form>
         </section>
         <section id="button">
-            <p><a href="products">List All Products</a></p>
+            <p><a href="/products">List All Products</a></p>
         </section>
     </div>
     @if(Session::has('flash_message'))

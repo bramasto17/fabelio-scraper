@@ -46,7 +46,7 @@
     </section>
     <section id="button">
       <p><a href="/">Submit New Product</a></p>
-      <p><a href="products">List All Products</a></p>
+      <p><a href="/products">List All Products</a></p>
     </section>
 </body>
 <!-- <script type="text/javascript" src="{{asset('/js/price-history.js')}}"></script> -->
