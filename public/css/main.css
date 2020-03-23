@@ -23,6 +23,17 @@ body
     background-color: #fed541;
 }
 
+#bio h1
+{
+    margin-bottom: 0;
+}
+
+.social
+{
+    height: 25px;
+    width: auto;
+}
+
 .tb
 {
     display: table;

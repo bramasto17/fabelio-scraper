@@ -10,6 +10,20 @@
 </head>
 
 <body>
+    <div class="container">
+        <section id="bio">
+            <h1>Fabelio Scraper</h1>
+            <p>By Bramasto Wibisono</p>
+            <p>
+                <a href="https://github.com/bramasto17">
+                    <img class="social" src="https://cdn.iconscout.com/icon/free/png-256/github-153-675523.png">
+                </a>
+                <a href="https://www.linkedin.com/in/bramasto-wibisono/">
+                    <img class="social" src="https://cdn1.iconfinder.com/data/icons/black-socicons/512/linkedin-512.png">
+                </a>
+            </p>
+        </section>
+    </div>
     <div class="center" id="cover">
         {!! Form::open() !!}
         <div class="tb">
