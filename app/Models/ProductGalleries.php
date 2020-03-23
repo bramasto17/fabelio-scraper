@@ -16,4 +16,12 @@ class ProductGalleries extends Model
     {
         return $this->hasMany('\App\Models\PriceHistories', 'product_id', 'id');
     }
+
+    public function getCreatedAtAttribute($value){
+        return \Carbon\Carbon::parse($value)->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y %H:%I:%S');
+    }
+
+    public function getUpdatedAtAttribute($value){
+        return \Carbon\Carbon::parse($value)->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y %H:%I:%S');
+    }
 }
