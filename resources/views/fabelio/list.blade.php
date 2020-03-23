@@ -24,7 +24,7 @@
                             </div>
                             <div class="desc">
                                 <h3>{{$result['name']}}</h3>
-                                <h4>{{$result['final_price']}}</h3>
+                                <h4>Rp. {{number_format($result['final_price'])}}</h3>
                             </div>
                         </div>
                     </div>
