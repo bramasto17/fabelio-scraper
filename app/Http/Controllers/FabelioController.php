@@ -42,6 +42,11 @@ class FabelioController extends Controller
         $attributes = array_except($request->all(),['_token']);
         $result = $this->productsService->submit($attributes);
 
+        if(!@$result){
+            \Session::flash('flash_message', 'URL Invalid!');
+            return redirect('/');
+        }
+
         return redirect('/');
     }
 

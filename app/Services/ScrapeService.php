@@ -41,7 +41,7 @@ class ScrapeService extends \App\Services\BaseService
                 'product_gallery' => $product_gallery
             ];
         } catch (\Exception $e) {
-            abort(400, 'URL Invalid');
+            
         }
     }
 

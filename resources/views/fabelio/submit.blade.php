@@ -43,7 +43,7 @@
                 vertical-align: middle;
             }
 
-            input, button
+            input, button, span
             {
                 color: #000;
                 font-family: Fabelio;
@@ -53,12 +53,15 @@
                 background-color: transparent;
             }
 
-            #cover
-            {
+            .center{
                 position: absolute;
                 top: 50%;
                 left: 0;
                 right: 0;
+            }
+
+            #cover
+            {
                 width: 850px;
                 padding: 35px;
                 margin: -83px auto 0 auto;
@@ -180,11 +183,24 @@
                 width: 40px;
                 background-color: #000;
             }
+
+            #message{
+                text-align: center;
+                margin-left: 40%;
+                margin-right: 40%;
+                margin-top: 100px;
+                font-size: 30px;
+            }
+            
+            .alert{
+                color: #ff1a1a;
+            }            
+
         </style>
 </head>
 
 <body>
-    <div id="cover">
+    <div class="center" id="cover">
         {!! Form::open() !!}
         <div class="tb">
           <div class="td">
@@ -198,8 +214,17 @@
         </div>
         {!! Form::close() !!}
         </div>
+        @if(Session::has('flash_message'))
+            <div class="center">
+            </div>
+        @endif
       </form>
     </div>
+    @if(Session::has('flash_message'))
+    <div class="center" id="message">
+        <span class="alert">{{ Session::get('flash_message') }}</span>
+    </div>
+    @endif
 </body>
 
 </html>

@@ -34,39 +34,42 @@ class ProductsService extends \App\Services\BaseService
     public function submit(array $data)
     {
         $data = $this->scrapeService->scrape($data['url']);
-        // dd($data);
 
-        return $this->atomic(function() use ($data) {
-            $product = Products::where('fabelio_product_id',$data['fabelio_product_id'])->first();
-            // If product already exists
-            if(@$product){
-                $product = $product->toArray();
-                
-                // Get hour difference between now and product last update
-                $hourdiff = (strtotime(Carbon::now()) - strtotime($product['updated_at']))/3600;
+        if(@$data){
+            return $this->atomic(function() use ($data) {
+                $product = Products::where('fabelio_product_id',$data['fabelio_product_id'])->first();
+                // If product already exists
+                if(@$product){
+                    $product = $product->toArray();
+                    
+                    // Get hour difference between now and product last update
+                    $hourdiff = (strtotime(Carbon::now()) - strtotime($product['updated_at']))/3600;
 
-                // Only update data if it's at least one hour from the last time update
-                if($hourdiff >= 1){
-                    $product = $this->updateProduct(array_except($data,['product_gallery']));
+                    // Only update data if it's at least one hour from the last time update
+                    if($hourdiff >= 1){
+                        $product = $this->updateProduct(array_except($data,['product_gallery']));
 
-                    $priceHistory = $this->createPriceHistory($data, $product['id']);    
+                        $priceHistory = $this->createPriceHistory($data, $product['id']);    
+                    }
                 }
-            }
-            // If product does not exist yet
-            else{
-                // Create Product Data
-                $product = $this->createProduct(array_except($data,['product_gallery']));
+                // If product does not exist yet
+                else{
+                    // Create Product Data
+                    $product = $this->createProduct(array_except($data,['product_gallery']));
 
-                // Create Product Gallery
-                $productGallery = $this->createProductGallery($data['product_gallery'], $product['id']);
+                    // Create Product Gallery
+                    $productGallery = $this->createProductGallery($data['product_gallery'], $product['id']);
 
-                // Create Price History
-                $priceHistory = $this->createPriceHistory($data, $product['id']);
-            }
+                    // Create Price History
+                    $priceHistory = $this->createPriceHistory($data, $product['id']);
+                }
 
-            return $product;
-        });
-
+                return $product;
+            });
+        }
+        else{
+            return null;
+        }
     }
 
     protected function createProduct(array $data)
