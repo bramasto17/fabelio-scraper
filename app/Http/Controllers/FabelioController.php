@@ -32,9 +32,9 @@ class FabelioController extends Controller
     public function showProductById($id)
     {
         $result = $this->productsService->getById($id);
-    	dd($result);
+        // dd($result);
         
-        return view('fabelio.products.submit');
+        return view('fabelio.detail', compact('result'));
     }
 
     public function submit(Request $request)
