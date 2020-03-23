@@ -67,7 +67,7 @@ input, button, span
 {
     width: 850px;
     padding: 35px;
-    margin: -83px auto 0 auto;
+    margin: 0 auto 0 auto;
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 0 10px 40px #a0a0a0, 0 0 0 20px #ffffffeb;
@@ -221,6 +221,11 @@ button span:before, button span:after
     width: 25%;
     float: left;
     margin-bottom: 50px;
+}
+
+#list
+{
+    overflow: auto;
 }
 
 #list .item

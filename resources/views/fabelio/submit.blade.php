@@ -23,26 +23,29 @@
                 </a>
             </p>
         </section>
-    </div>
-    <div class="center" id="cover">
-        {!! Form::open() !!}
-        <div class="tb">
-          <div class="td">
-            <input type="text" name="url" id="url" class="gui-input" placeholder="Fabelio Product URL">
-        </div>
-        <div class="td" id="s-cover">
-            <button type="submit">
-              <div id="s-circle"></div>
-              <span></span>
-            </button>
-        </div>
-        {!! Form::close() !!}
-        </div>
-        @if(Session::has('flash_message'))
-            <div class="center">
+        <section id="cover">
+            {!! Form::open() !!}
+            <div class="tb">
+              <div class="td">
+                <input type="text" name="url" id="url" class="gui-input" placeholder="Fabelio Product URL">
             </div>
-        @endif
-      </form>
+            <div class="td" id="s-cover">
+                <button type="submit">
+                  <div id="s-circle"></div>
+                  <span></span>
+                </button>
+            </div>
+            {!! Form::close() !!}
+            </div>
+            @if(Session::has('flash_message'))
+                <div class="center">
+                </div>
+            @endif
+          </form>
+        </section>
+        <section id="button">
+            <p><a href="products">List All Products</a></p>
+        </section>
     </div>
     @if(Session::has('flash_message'))
     <div class="center" id="message">
