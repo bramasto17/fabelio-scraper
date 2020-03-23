@@ -36,9 +36,8 @@ class FabelioController extends Controller
     {
         $attributes = $request->all();
         $results = $this->productsService->getAll($attributes);
-    	dd($results);
 
-        return view('fabelio.products.submit');
+        return view('fabelio.list', compact('results'));
     }
 
     public function showProductById($id)
