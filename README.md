@@ -1,72 +1,92 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Fabelio Scraper
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+[![Github](https://cdn.iconscout.com/icon/free/png-32/github-153-675523.png)](https://github.com/bramasto17)
 
-## About Laravel
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Fabelio Scraping is an app that scrapes product from fabelio.com and monitor the price changes. The app is built from Laravel 5.8. It has been deployed to Heroku at https://fabelio-scraper.herokuapp.com/
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# New Features!
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  - Import a HTML file and watch it magically convert to Markdown
+  - Drag and drop images (requires your Dropbox account be linked)
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+You can also:
+  - Import and save files from GitHub, Dropbox, Google Drive and One Drive
+  - Drag and drop markdown and HTML files into Dillinger
+  - Export documents as Markdown, HTML and PDF
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
 
-## Laravel Sponsors
+> The overriding design goal for Markdown's
+> formatting syntax is to make it as readable
+> as possible. The idea is that a
+> Markdown-formatted document should be
+> publishable as-is, as plain text, without
+> looking like it's been marked up with tags
+> or formatting instructions.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+### Tech
 
-## Contributing
+Fabelio Scraper uses a number of open source projects to work properly:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+* [PHP](https://php.net) - The programming language used for the program
+* [Laravel](https://laravel.com) - The framework used for the program
+* [Guzzle](https://guzzlephp.org) - PHP package to scrape the HTML
+* [D3.js](https://https://d3js.org/) - Great visualization tool
+* [Dillinger](https://dillinger.io) - Markdown editor
+* [Heroku] - Great platform to deploy personal projects
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Fabelio Scraper itself is open source with a [public repository](https://github.com/bramasto17/fabelio-scraper)
+ on GitHub.
 
-## License
+### Installation
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Dillinger requires [PHP](https://php.net/) v7.1+ to run.
+
+Install the dependencies.
+
+```sh
+$ cd fabelio-scraper
+$ composer install
+```
+
+Setup the environment...
+
+```sh
+$ cp .env.example .env
+```
+
+Run the migration...
+
+```sh
+$ php artisan migrate
+```
+
+Run the program...
+
+```sh
+$ php artisan serve
+```
+
+### About Me
+
+My name is Bramasto Wibisono, I'm from Tangerang, Indonesia. I graduated from university on February 2019. Even though I just started my career after graduation for a year, personally I feel like I already have a lot of knowledge about this industry and this position from my current company. Since December 2018, I've been working at a startup called Umroh.com as a Backend Developer. There I develop the backend system for the website and mobile applications. The system is developed with microservice infrastructure using Laravel and Lumen and deployed to AWS. I have fully knowledge to the techonologies used and good analytics and problem solving. 
+
+So far my skills and projects are mostly developed with PHP especially Laravel and Lumen. But I don't think programming language is a boundary to what I can accomplish. I enjoy develop projects that challanges me to explore my knowledge and creativity, that way I won't find my job boring. Below is some of my personal projects that I have done.
+
+| Projects | Github Repo |
+| ------ | ------ |
+| Omarina | [https://github.com/bramasto17/omarina](https://github.com/bramasto17/omarina) |
+| Movie-Biz | [https://github.com/bramasto17/MovieBiz---Thesis](https://github.com/bramasto17/MovieBiz---Thesis) |
+| DSS Recruitment | [https://github.com/bramasto17/dss-recruitment](https://github.com/bramasto17/dss-recruitment) |
+| Fabelio Scraper | [https://github.com/bramasto17/fabelio-scraper](https://github.com/bramasto17/fabelio-scraper) |
+
+### Find Me On
+[Github](https://github.com/bramasto17/)
+[LinkedIn](https://www.linkedin.com/in/bramasto-wibisono/)
+[My CV](https://s3-ap-southeast-1.amazonaws.com/glints-dashboard/resume/6b7dd9176b32e24b99e797b184dfe4f9.pdf)
