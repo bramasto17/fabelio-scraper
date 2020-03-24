@@ -5,7 +5,7 @@
     <!-- -------------- Meta and Title -------------- -->
     <meta charset="utf-8">
     <title>Fabelio Scraper</title>
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
 
