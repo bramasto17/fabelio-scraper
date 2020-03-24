@@ -43,7 +43,7 @@ class ProductsService extends \App\Services\BaseService
                     $product = $product->toArray();
 
                     // Only update data if it's at different hour than the last update
-                    if(date('H', strtotime($product['updated_at'])) != date('H', strtotime(Carbon::now()))){
+                    if(date('H', strtotime($product['updated_at'])) != date('H', strtotime(Carbon::now()->setTimezone('Asia/Jakarta')))){
                         $product = $this->updateProduct(array_except($data,['product_gallery']));
 
                         $priceHistory = $this->createPriceHistory($data, $product['id']);    
