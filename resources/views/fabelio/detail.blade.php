@@ -102,16 +102,17 @@
       if(error) console.log("Error, file not found");
       data = data.price_history;
       data.forEach(function(d){
-        console.log(d.regular_price);
         d.date = d.created_at;
+        d.time = (new Date(d.created_at).getHours()) + ":" + (new Date(d.created_at).getMinutes());
         d.regular_price = +d.regular_price;
         d.final_price = +d.final_price;
+        console.log(d.time);
         // d.total = +d.total;
       });
       //==============  
 
       //specify domain of x and y scale
-      x_scale.domain(data.map(function(d) { return d.date; }));
+      x_scale.domain(data.map(function(d) { return d.time; }));
       y_scale.domain([0, d3.max(data, function(d) { return d.final_price; })]);
       var max = d3.max(data, function(d) { return d.final_price; });
       //==============
@@ -128,7 +129,7 @@
               bar.transition().duration(3000)
               .delay(function(d,i){ return i = 200;})
               .attr({
-                "x" : function(d) { return x_scale(d.date); },
+                "x" : function(d) { return x_scale(d.time); },
                 "y" : function(d) { return y_scale(d.final_price); },
                 "width" : x_scale.rangeBand(),
                 "height" : function(d) { return height - y_scale(d.final_price); }
